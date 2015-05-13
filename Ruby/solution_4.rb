@@ -23,20 +23,5 @@ def palindrome?(number)
   number.reverse == number
 end
 
-require 'benchmark'
-
-actual_solution = 0
-expected_solution = 906_609
-benchmark_time = Benchmark.realtime { actual_solution = solution4 } * 1000
-
-puts "Solution 4 answer = #{actual_solution}"
-
-if actual_solution == expected_solution
-  puts 'Correct! :)'
-else
-  puts 'Incorrect! :('
-end
-
-
-puts "Benchmark: #{ benchmark_time } milliseconds"
-
+require_relative 'print_solution'
+print_solution(4, 906_609)

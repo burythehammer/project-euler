@@ -12,19 +12,5 @@ def solution1
   sum
 end
 
-require 'benchmark'
-
-actual_solution = 0
-expected_solution = 233_168
-benchmark_time = Benchmark.realtime { actual_solution = solution1 } * 1000
-
-puts "Solution 1 answer = #{actual_solution}"
-
-if actual_solution == expected_solution
-  puts 'Correct! :)'
-else
-  puts 'Incorrect! :('
-end
-
-puts "Benchmark: #{ benchmark_time } milliseconds"
-
+require_relative 'print_solution'
+print_solution(1, 233_168)

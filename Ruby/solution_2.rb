@@ -14,18 +14,5 @@ def solution2
   end
 end
 
-require 'benchmark'
-
-actual_solution = 0
-expected_solution = 4_613_732
-benchmark_time = Benchmark.realtime { actual_solution = solution2 } * 1000
-
-puts "Solution 2 answer = #{actual_solution}"
-
-if actual_solution == expected_solution
-  puts 'Correct! :)'
-else
-  puts 'Incorrect! :('
-end
-
-puts "Benchmark: #{ benchmark_time } milliseconds"
+require_relative 'print_solution'
+print_solution(2, 4_613_732)

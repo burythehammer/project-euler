@@ -7,8 +7,6 @@
 
 # Answer: 232792560
 
-require 'benchmark'
-
 # VERY brute force-y, there are smarter ways to do it if you prime factorise
 def solution5
   n = 20
@@ -21,16 +19,5 @@ def divisible_1_to_20(n)
   true
 end
 
-actual_solution = 0
-expected_solution = 232_792_560
-benchmark_time = Benchmark.realtime { actual_solution = solution5 } * 1000
-
-puts "Solution 5 answer = #{actual_solution}"
-
-if actual_solution == expected_solution
-  puts 'Correct! :)'
-else
-  puts 'Incorrect! :('
-end
-
-puts "Benchmark: #{ benchmark_time } milliseconds"
+require_relative 'print_solution'
+print_solution(5, 232_792_560)

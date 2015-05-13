@@ -17,19 +17,5 @@ def solution3
   large_num
 end
 
-require 'benchmark'
-
-actual_solution = 0
-expected_solution = 6857
-benchmark_time = Benchmark.realtime { actual_solution = solution3 } * 1000
-
-puts "Solution 3 answer = #{actual_solution}"
-
-if actual_solution == expected_solution
-  puts 'Correct! :)'
-else
-  puts 'Incorrect! :('
-end
-
-puts "Benchmark: #{ benchmark_time } milliseconds"
-
+require_relative 'print_solution'
+print_solution(3, 6857)
