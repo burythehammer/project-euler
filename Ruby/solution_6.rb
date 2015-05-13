@@ -23,7 +23,7 @@ def solution6
     sum += i
   end
 
-  abs(sum_of_squares - sum * sum)
+  (sum_of_squares - sum * sum).abs
 end
 
 require_relative 'print_solution'
