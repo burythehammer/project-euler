@@ -9,10 +9,23 @@ def solution2
     fib_new = fib_1 + fib_2
     fib_1 = fib_2
     fib_2 = fib_new
-    break if fib_new > 4_000_000
+    return sum if fib_new > 4_000_000
     sum += fib_new if fib_new.even?
   end
-  sum
 end
 
-puts "solution 2 = #{solution2}"
+require 'benchmark'
+
+actual_solution = 0
+expected_solution = 4_613_732
+benchmark_time = Benchmark.realtime { actual_solution = solution2 } * 1000
+
+puts "Solution 2 answer = #{actual_solution}"
+
+if actual_solution == expected_solution
+  puts 'Correct! :)'
+else
+  puts 'Incorrect! :('
+end
+
+puts "Benchmark: #{ benchmark_time } milliseconds"
