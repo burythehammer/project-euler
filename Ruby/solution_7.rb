@@ -1,18 +1,51 @@
 # solution_7.rb
 
-# https://projecteuler.net/problem=5
+# https://projecteuler.net/problem=7
 
-# The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
+# By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
 
-# Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
+# What is the 10 001st prime number?
+
+# Answer: 104_743
 
 def solution7
+  prime_numbers = 0
 
-	num = 7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450
-	num.to_s!
+  sieve.each_with_index do |is_prime, prime|
+    prime_numbers += 1 if is_prime
+    return prime if prime_numbers == 10_001
+  end
+end
 
+def sieve
+  sieve = declare_sieve
+  sieve[0] = false
+  sieve[1] = false
 
+  i = 2 # starts at first prime
+
+  while i < Math.sqrt(sieve.length)
+    j = i # no point starting below current prime
+    while i * j < sieve.length
+      sieve[i * j] = false
+      j += 1
+    end
+
+    i = next_prime(sieve, i) # only sieves out primes
+  end
+  sieve
+end
+
+# looks for the next prime in that array
+def next_prime(sieve, current_prime)
+  sieve.each_with_index { |is_prime, prime| return prime if is_prime && prime > current_prime }
+end
+
+def declare_sieve
+  array = Array.new(1_000_000)
+  array.each_index { |i| array[i] = true }
+  array
 end
 
 require_relative 'print_solution'
-print_solution(7, 23_514_624_000)
+print_solution(7, 104_743)
